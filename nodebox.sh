@@ -14,6 +14,7 @@ function check_node_modules {
       -v "$PROJECT_DIR":/app \
       -v "$PROJECT_DIR/node_modules":/app/node_modules \
       -w /app \
+      -p 3000:3000\
       node:latest \
       npm install
   fi
@@ -27,6 +28,7 @@ function run_project {
     -v "$PROJECT_DIR":/app \
     -v "$PROJECT_DIR/node_modules":/app/node_modules \
     -w /app \
+    -p 3000:3000
     node:latest \
     $CMD
 }
@@ -37,6 +39,7 @@ function check_updates {
   docker run --rm -it \
     -v "$PROJECT_DIR":/app \
     -w /app \
+    -p 3000:3000
     node:latest \
     npm outdated
 }
@@ -47,6 +50,7 @@ function update_dependencies {
   docker run --rm -it \
     -v "$PROJECT_DIR":/app \
     -w /app \
+    -p 3000:3000
     node:latest \
     bash -c "npx npm-check-updates -u && npm install"
 }
